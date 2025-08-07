@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 데모 페이지</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --main-blue: #4f8ef7;
+            --main-purple: #a7c7e7;
+            --main-pink: #f7cac9;
+            --main-green: #b8e2c8;
+            --main-yellow: #fff5ba;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--main-purple) 0%, var(--main-pink) 100%);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: var(--main-blue);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-radius: 0 0 24px 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+        nav {
+            background: var(--main-yellow);
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        nav a {
+            color: var(--main-blue);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        nav a:hover {
+            background: var(--main-purple);
+            color: white;
+        }
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: rgba(255,255,255,0.85);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.09);
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        h2 {
+            color: var(--main-blue);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        button {
+            background: var(--main-blue);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 24px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background 0.2s, transform 0.2s;
+        }
+        button:hover {
+            background: var(--main-purple);
+            transform: scale(1.05);
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: var(--main-green);
+            color: #555;
+            margin-top: 2rem;
+            border-radius: 24px 24px 0 0;
+        }
+        /* 반응형 */
+        @media (max-width: 900px) {
+            main {
+                max-width: 95vw;
+                padding: 1rem;
+            }
+        }
+        @media (max-width: 600px) {
+            header {
+                font-size: 1rem;
+                padding: 1rem 0.5rem;
+            }
+            nav {
+                gap: 0.5rem;
+                padding: 0.5rem 0.2rem;
+            }
+            main {
+                padding: 0.5rem;
+            }
+            h2 {
+                font-size: 1.1rem;
+            }
+            button {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HTML5 데모 페이지</h1>
+        <p>HTML5, CSS3, JavaScript를 활용한 예제입니다.</p>
+    </header>
+    <nav>
+        <a href="#intro">소개</a>
+        <a href="#features">특징</a>
+        <a href="#interaction">상호작용</a>
+    </nav>
+    <main>
+        <section id="intro">
+            <h2>HTML5란?</h2>
+            <p>
+                HTML5는 웹 페이지를 만들기 위한 최신 표준 마크업 언어입니다.<br>
+                다양한 멀티미디어 요소와 시맨틱 태그를 지원합니다.
+            </p>
+        </section>
+        <section id="features">
+            <h2>주요 특징</h2>
+            <ul>
+                <li>&lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;footer&gt; 등 시맨틱 태그</li>
+                <li>오디오, 비디오 등 멀티미디어 지원</li>
+                <li>폼 기능 강화 및 API 제공</li>
+            </ul>
+        </section>
+        <section id="interaction">
+            <h2>간단한 상호작용</h2>
+            <p id="message">아래 버튼을 눌러보세요!</p>
+            <button id="msgBtn">메시지 변경</button>
+            <hr style="margin:2rem 0;">
+            <h2>To-Do List</h2>
+            <div style="max-width:400px;margin:0 auto;">
+                <form id="todoForm" style="display:flex;gap:0.5rem;margin-bottom:1rem;">
+                    <input type="text" id="todoInput" placeholder="할 일을 입력하세요" style="flex:1;padding:0.7rem;border-radius:8px;border:1px solid #ddd;font-size:1rem;">
+                    <button type="submit">추가</button>
+                </form>
+                <ul id="todoList" style="list-style:none;padding:0;margin:0;">
+                    <!-- 동적으로 추가됨 -->
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 HTML5 데모 페이지
+    </footer>
+    <script>
+        // 메시지 변경 기능
+        document.getElementById('msgBtn').addEventListener('click', function() {
+            const msg = document.getElementById('message');
+            msg.textContent = '버튼이 클릭되었습니다!';
+        });
+
+        // To-Do List 기능
+        const todoForm = document.getElementById('todoForm');
+        const todoInput = document.getElementById('todoInput');
+        const todoList = document.getElementById('todoList');
+
+        function createTodoItem(text) {
+            const li = document.createElement('li');
+            li.style.display = 'flex';
+            li.style.alignItems = 'center';
+            li.style.justifyContent = 'space-between';
+            li.style.padding = '0.8rem 0.5rem';
+            li.style.borderBottom = '1px solid #f0f0f0';
+            li.style.fontSize = '1rem';
+
+            const span = document.createElement('span');
+            span.textContent = text;
+            span.style.flex = '1';
+            span.style.color = '#333';
+
+            const actions = document.createElement('span');
+
+            const doneBtn = document.createElement('button');
+            doneBtn.innerHTML = '&#10003;';
+            doneBtn.title = '완료';
+            doneBtn.style.background = 'none';
+            doneBtn.style.color = 'var(--main-blue)';
+            doneBtn.style.border = 'none';
+            doneBtn.style.cursor = 'pointer';
+            doneBtn.style.fontSize = '1.1rem';
+            doneBtn.style.marginLeft = '0.5rem';
+            doneBtn.addEventListener('click', function() {
+                span.style.textDecoration = span.style.textDecoration === 'line-through' ? 'none' : 'line-through';
+                span.style.color = span.style.textDecoration === 'line-through' ? '#aaa' : '#333';
+            });
+
+            const delBtn = document.createElement('button');
+            delBtn.innerHTML = '&#10005;';
+            delBtn.title = '삭제';
+            delBtn.style.background = 'none';
+            delBtn.style.color = 'var(--main-blue)';
+            delBtn.style.border = 'none';
+            delBtn.style.cursor = 'pointer';
+            delBtn.style.fontSize = '1.1rem';
+            delBtn.style.marginLeft = '0.5rem';
+            delBtn.addEventListener('click', function() {
+                todoList.removeChild(li);
+            });
+
+            actions.appendChild(doneBtn);
+            actions.appendChild(delBtn);
+
+            li.appendChild(span);
+            li.appendChild(actions);
+
+            return li;
+        }
+
+        todoForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const value = todoInput.value.trim();
+            if (value) {
+                const todoItem = createTodoItem(value);
+                todoList.appendChild(todoItem);
+                todoInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>

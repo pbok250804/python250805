@@ -1,0 +1,48 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# 엑셀 파일 읽기
+file_path = '출생아수__합계출산율__자연증가_등_20240726084835.xlsx'
+df = pd.read_excel(file_path)
+
+# 데이터 클랜징
+# 1. 컬럼명 정리
+df.columns = [col.strip() for col in df.columns]
+
+# 2. 필요없는 행/열 제거 (예: 첫 행에 설명이 있거나, 합계 행 등)
+df = df.dropna(how='all')  # 모두 NaN인 행 제거
+df = df.dropna(axis=1, how='all')  # 모두 NaN인 열 제거
+
+# 3. 데이터 타입 변환
+for col in df.columns:
+    if df[col].dtype == 'object':
+        try:
+            df[col] = pd.to_numeric(df[col].str.replace(',', ''), errors='ignore')
+        except:
+            pass
+
+# 4. 결측치 처리 (필요시)
+df = df.fillna(method='ffill')
+
+# 데이터 확인
+print(df.head())
+
+# 분석 예시: 연도별 출생아수와 합계출산율 시각화
+plt.figure(figsize=(10,5))
+if '출생아수' in df.columns and '합계출산율' in df.columns:
+    plt.plot(df['연도'], df['출생아수'], label='출생아수')
+    plt.plot(df['연도'], df['합계출산율'], label='합계출산율')
+    plt.legend()
+    plt.title('연도별 출생아수 및 합계출산율')
+    plt.xlabel('연도')
+    plt.ylabel('값')
+    plt.grid(True)
+    plt.show()
+else:
+    print("출생아수 또는 합계출산율 컬럼명을 확인하세요.")
+
+# 추가 분석: 최근 10년간 평균 합계출산율
+if '합계출산율' in df.columns and '연도' in df.columns:
+    recent10 = df.sort_values('연도', ascending=False).head(10)
+    avg_tfr = recent10['합계출산율'].mean()
+    print(f"최근 10년간 평균 합계출산율: {avg_tfr:.2f}")

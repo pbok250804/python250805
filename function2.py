@@ -17,9 +17,9 @@ print(connectURI("credu.com", "80"))
 print(connectURI(port="80",server="test.com"))
 
 #가변인자(갯수가 정해져 있지 않은경우)
-# * Tuple 이라는 힌트
+# *Tuple이라는 힌트 
 def union(*ar):
-    # 지역변수
+    #지역변수 
     res = []
     for item in ar:
         for x in item:
@@ -38,3 +38,5 @@ print( g(3,5) )
 print( (lambda  x:x*x)(3) )
 print( globals() )
 print( dir() )
+
+

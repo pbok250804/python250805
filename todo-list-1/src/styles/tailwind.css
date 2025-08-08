@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply font-sans bg-pastel-blue text-gray-800;
+    }
+}
+
+@layer components {
+    header {
+        @apply bg-pastel-purple text-white p-6 text-center;
+    }
+    main {
+        @apply max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg;
+    }
+    input[type="text"] {
+        @apply w-full p-3 border border-gray-300 rounded-md mb-4;
+    }
+    button {
+        @apply bg-pastel-green text-white py-2 px-4 rounded-md cursor-pointer;
+    }
+    button:hover {
+        @apply bg-green-600;
+    }
+    ul {
+        @apply list-none p-0;
+    }
+    li {
+        @apply bg-pastel-yellow my-2 p-3 rounded-md flex justify-between items-center;
+    }
+    .delete-btn {
+        @apply bg-pastel-red text-white py-1 px-2 rounded-md cursor-pointer;
+    }
+    .delete-btn:hover {
+        @apply bg-red-600;
+    }
+}
+
+@layer utilities {
+    .bg-pastel-blue {
+        background-color: #AEEEEE; /* Light Cyan */
+    }
+    .bg-pastel-purple {
+        background-color: #EAB8E4; /* Light Lavender */
+    }
+    .bg-pastel-green {
+        background-color: #B2E0B2; /* Light Green */
+    }
+    .bg-pastel-yellow {
+        background-color: #FFF9C4; /* Light Yellow */
+    }
+    .bg-pastel-red {
+        background-color: #FFCCCB; /* Light Red */
+    }
+}

@@ -1,44 +1,41 @@
-# demoLoop.py
-value = 5
+# demoLoop.py 
+value = 5 
 while value > 0:
     print(value)
-    value -= 1
+    value -= 1 
 
-print('---for in ---')
-lst = [100, 'apple', 3.14]
+print("---for in---")
+lst = [100, "apple", 3.14]
 for item in lst:
     print(item)
-    print(type(item))
 
-fruits = {100:'apple', 200:'banana'}
+fruits = {100:"apple", 200:"banana"}
 for item in fruits.items():
     print(item)
 
-print('--- 수열함수 ---')
+print("---수열함수---")
 print(list(range(1,11)))
-print(list(range(2000,2026)))
+print(list(range(2000, 2026)))
 print(list(range(1,32)))
 
-
-print('--- 리스트 내장---')
+print("---리스트내장---")
 lst = list(range(1,11))
 print(lst)
-print([i**2 for i in lst if i>5])
-tp = ('apple', 'kiwi')
+print( [i**2 for i in lst if i>5] )
+tp = ("apple", "kiwi")
 print( [len(i) for i in tp] )
 
-print('--- 필터링함수 ---')
-# 필터링 함수
+#필터링 함수 
 lst = [10, 25, 30]
 def getBiggerThan20(i):
-    return i > 20
+    return i>20
 
-# 필터링
+#필터링 
 itemL = filter(getBiggerThan20, lst)
 for item in itemL:
     print(item)
 
-print('---람다함수 사용---')
+print("---람다함수사용---")
 itemL = filter(lambda x:x>20, lst)
 for item in itemL:
-    print(item)
+    print(item)  

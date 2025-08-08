@@ -20,6 +20,6 @@ searchBox = driver.find_element(By.CLASS_NAME, "gLFyf")
 searchBox.send_keys("맥북")
 searchBox.send_keys(Keys.RETURN)
 
-# 무한 루프
+#무한 루프 
 while True:
-    pass
+    pass 

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>To-do 리스트</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f4f6fa;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #4a90e2;
+            color: #fff;
+            padding: 1.5rem 2rem;
+            text-align: center;
+        }
+        main {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        input[type="text"] {
+            width: calc(100% - 100px);
+            padding: 0.7rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        button {
+            background: #4a90e2;
+            color: #fff;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #357ab8;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #f0f0f0;
+            margin: 0.5rem 0;
+            padding: 0.7rem;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .delete-btn {
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>To-do 리스트</h1>
+        <p>할 일을 추가하고 관리하세요!</p>
+    </header>
+    <main>
+        <input type="text" id="taskInput" placeholder="새로운 할 일 입력">
+        <button id="addTaskBtn">추가</button>
+        <ul id="taskList"></ul>
+    </main>
+    <script>
+        document.getElementById('addTaskBtn').addEventListener('click', function() {
+            const taskInput = document.getElementById('taskInput');
+            const taskText = taskInput.value.trim();
+            if (taskText) {
+                const li = document.createElement('li');
+                li.textContent = taskText;
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = '삭제';
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.addEventListener('click', function() {
+                    li.remove();
+                });
+                li.appendChild(deleteBtn);
+                document.getElementById('taskList').appendChild(li);
+                taskInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>

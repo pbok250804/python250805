@@ -28,12 +28,11 @@ def test_person():
     assert p.id == 1
     assert p.name == "홍길동"
 
-def test_person_printInfo(capsys=None):
+def test_person_printInfo(capsys):
     p = Person(2, "김철수")
     p.printInfo()
-    if capsys:
-        captured = capsys.readouterr()
-        assert "ID: 2, Name: 김철수" in captured.out
+    captured = capsys.readouterr()
+    assert "ID: 2, Name: 김철수" in captured.out
 
 def test_manager():
     m = Manager(3, "이영희", "팀장")
@@ -41,12 +40,11 @@ def test_manager():
     assert m.name == "이영희"
     assert m.title == "팀장"
 
-def test_manager_printInfo(capsys=None):
+def test_manager_printInfo(capsys):
     m = Manager(4, "박민수", "부장")
     m.printInfo()
-    if capsys:
-        captured = capsys.readouterr()
-        assert "ID: 4, Name: 박민수, Title: 부장" in captured.out
+    captured = capsys.readouterr()
+    assert "ID: 4, Name: 박민수, Title: 부장" in captured.out
 
 def test_employee():
     e = Employee(5, "최지우", "Python")
@@ -54,12 +52,11 @@ def test_employee():
     assert e.name == "최지우"
     assert e.skill == "Python"
 
-def test_employee_printInfo(capsys=None):
+def test_employee_printInfo(capsys):
     e = Employee(6, "정우성", "Java")
     e.printInfo()
-    if capsys:
-        captured = capsys.readouterr()
-        assert "ID: 6, Name: 정우성, Skill: Java" in captured.out
+    captured = capsys.readouterr()
+    assert "ID: 6, Name: 정우성, Skill: Java" in captured.out
 
 def test_inheritance_manager():
     m = Manager(7, "김유신", "이사")
@@ -69,21 +66,18 @@ def test_inheritance_employee():
     e = Employee(8, "유관순", "C++")
     assert isinstance(e, Person)
 
-def test_manager_overriding(capsys=None):
+def test_manager_overriding(capsys):
     m = Manager(9, "장보고", "대표")
     m.printInfo()
-    if capsys:
-        captured = capsys.readouterr()
-        assert "Title: 대표" in captured.out
+    captured = capsys.readouterr()
+    assert "Title: 대표" in captured.out
 
-def test_employee_overriding(capsys=None):
-    e = Employee(10, "이순신", "Go")
+def test_employee_overriding(capsys):
+    e = Employee(10, "신사임당", "Excel")
     e.printInfo()
-    if capsys:
-        captured = capsys.readouterr()
-        assert "Skill: Go" in captured.out
+    captured = capsys.readouterr()
+    assert "Skill: Excel" in captured.out
 
-# pytest로 실행 시 capsys를 자동으로 주입받아 테스트할
 if __name__ == "__main__":
     p = Person(1, "홍길동")
     p.printInfo()
@@ -92,3 +86,4 @@ if __name__ == "__main__":
     m.printInfo()
 
     e = Employee(3, "이영희", "Python")
+    e.printInfo()

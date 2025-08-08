@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 데모 페이지</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f4f6fa;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #4a90e2;
+            color: #fff;
+            padding: 1.5rem 2rem;
+            text-align: center;
+        }
+        nav {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0.5rem 2rem;
+        }
+        nav a {
+            color: #4a90e2;
+            text-decoration: none;
+            margin-right: 1.5rem;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        h2 {
+            color: #333;
+        }
+        button {
+            background: #4a90e2;
+            color: #fff;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #357ab8;
+        }
+        footer {
+            text-align: center;
+            color: #888;
+            padding: 1rem 0;
+            margin-top: 2rem;
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HTML5 &amp; CSS3 데모 페이지</h1>
+        <p>HTML5 태그와 CSS3, 간단한 자바스크립트 예제</p>
+    </header>
+    <nav>
+        <a href="#intro">소개</a>
+        <a href="#features">특징</a>
+        <a href="#event">이벤트</a>
+    </nav>
+    <main>
+        <section id="intro">
+            <h2>소개</h2>
+            <p>
+                이 페이지는 <strong>HTML5</strong>의 다양한 태그와 <strong>CSS3</strong> 스타일, 그리고 <strong>자바스크립트</strong>를 활용한 간단한 인터랙션을 보여줍니다.
+            </p>
+        </section>
+        <section id="features">
+            <h2>HTML5 주요 태그</h2>
+            <ul>
+                <li><code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code></li>
+                <li>시맨틱 마크업</li>
+                <li>반응형 디자인</li>
+            </ul>
+            <figure>
+                <img src="https://via.placeholder.com/400x150?text=HTML5+Demo" alt="HTML5 데모 이미지" style="width:100%;max-width:400px;border-radius:8px;">
+                <figcaption>HTML5 데모 이미지를 예시로 사용</figcaption>
+            </figure>
+        </section>
+        <section id="event">
+            <h2>자바스크립트 이벤트</h2>
+            <p>아래 버튼을 클릭하면 인사 메시지가 나타납니다.</p>
+            <button id="greetBtn">인사하기</button>
+            <p id="greetMsg" style="font-weight:bold; color:#4a90e2; margin-top:1rem;"></p>
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 HTML5 데모. 모든 권리 보유.
+    </footer>
+    <script>
+        // 간단한 자바스크립트: 버튼 클릭 시 인사 메시지 표시
+        document.getElementById('greetBtn').addEventListener('click', function() {
+            document.getElementById('greetMsg').textContent = '안녕하세요! HTML5와 CSS3를 즐겁게 공부하세요 😊';
+        });
+    </script>
+</body>

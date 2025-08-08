@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>To-do 리스트</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles/tailwind.css" rel="stylesheet">
+    <style>
+        .bg-pastel-blue    { background-color: #e3f0ff; }
+        .bg-pastel-purple  { background-color: #bfaee0; }
+        .bg-pastel-green   { background-color: #a8e6cf; }
+        .bg-pastel-yellow  { background-color: #fff9b0; }
+        .bg-pastel-red     { background-color: #ffb3b3; }
+        .text-pastel-green { color: #43b581; }
+        .line-through      { text-decoration: line-through; }
+    </style>
+</head>
+<body class="bg-pastel-blue font-sans min-h-screen">
+    <header class="bg-pastel-purple text-white p-6 text-center">
+        <h1 class="text-3xl font-bold">To-do 리스트</h1>
+        <p class="mt-2">할 일을 추가하고 관리하세요!</p>
+    </header>
+    <main class="max-w-lg w-full mx-auto mt-8 bg-white p-6 rounded-lg shadow-lg">
+        <form id="todoForm" class="flex flex-col sm:flex-row gap-2">
+            <input type="text" id="taskInput" placeholder="새로운 할 일 입력"
+                class="flex-grow p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pastel-purple transition"
+                autocomplete="off">
+            <button type="submit"
+                class="bg-pastel-green text-gray-700 font-semibold px-4 py-2 rounded-md hover:bg-green-200 transition">
+                추가
+            </button>
+        </form>
+        <ul id="taskList" class="mt-6 list-none p-0">
+            <!-- 할 일 목록이 여기에 추가됩니다 -->
+        </ul>
+    </main>
+    <footer class="text-center text-gray-400 mt-10 mb-4 text-sm">
+        &copy; 2025 To-do 리스트. 모든 권리 보유.
+    </footer>
+    <script>
+        const form = document.getElementById('todoForm');
+        const input = document.getElementById('taskInput');
+        const list = document.getElementById('taskList');
+
+        // 입력창 자동 포커스
+        window.onload = () => input.focus();
+
+        // 할 일 추가
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const text = input.value.trim();
+            if (!text) return;
+            addTask(text);
+            input.value = '';
+            input.focus();
+        });
+
+        // 할 일 항목 생성 함수
+        function addTask(text) {
+            const li = document.createElement('li');
+            li.className = 'bg-pastel-yellow my-2 px-3 py-2 rounded flex items-center justify-between shadow-sm transition';
+
+            // 왼쪽: 체크박스 + 텍스트
+            const left = document.createElement('div');
+            left.className = 'flex items-center gap-2';
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'accent-pastel-green w-5 h-5';
+
+            const span = document.createElement('span');
+            span.textContent = text;
+            span.className = 'text-gray-800 text-base break-all';
+
+            // 체크 시 완료 표시
+            checkbox.addEventListener('change', function() {
+                if (checkbox.checked) {
+                    span.classList.add('line-through', 'text-pastel-green');
+                } else {
+                    span.classList.remove('line-through', 'text-pastel-green');
+                }
+            });
+
+            left.appendChild(checkbox);
+            left.appendChild(span);
+
+            // 오른쪽: 삭제 버튼
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = '삭제';
+            deleteBtn.className = 'bg-pastel-red text-white px-3 py-1 rounded hover:bg-red-400 transition text-sm ml-2';
+            deleteBtn.addEventListener('click', function() {
+                li.remove();
+            });
+
+            li.appendChild(left);
+            li.appendChild(deleteBtn);
+            list.appendChild(li);
+        }
+    </script>
+</body>
+</html>

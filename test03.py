@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup 
+
 html = '''
 <html>
     <head>
@@ -32,7 +33,7 @@ soup = BeautifulSoup(html, 'html.parser')
 # class_price = soup.select('.price')
 # print(class_price)
 # #태그가 span이면서 class명이 price인 것을 모두 찾는다. 
-# tags_span_class_price = soup.select('span.price')
+# tags_span_class_price = soup.select('span.name')
 # print(tags_span_class_price)
 
 # #상위 구조 활용

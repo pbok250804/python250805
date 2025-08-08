@@ -1,32 +1,33 @@
 import re
 
 def is_valid_email(email):
-    # 이메일 주소가 맞는지 확인하는 아주 똑똑한 규칙(정규표현식)
-    # 아래 규칙을 쉽게 설명하면:
-    # 1. 이메일의 앞부분에는 영어, 숫자, 점(.), 밑줄(_), 퍼센트(%), 더하기(+), 빼기(-)가 올 수 있어요.
-    # 2. 그 다음에는 꼭 @가 있어야 해요. (이메일의 가운데에 꼭 들어가요)
-    # 3. @ 뒤에는 영어, 숫자, 점(.), 빼기(-)가 올 수 있어요. (이게 이메일 회사 이름이에요)
-    # 4. 그 다음에는 꼭 점(.)이 있어야 해요. (이메일 회사 이름과 마지막 부분을 나눠줘요)
-    # 5. 마지막에는 영어가 두 글자 이상 있어야 해요. (com, net, kr 같은 것)
+    # 이메일이 맞는지 확인하는 규칙(정규표현식)입니다.
+    # 아래는 아주 쉽게 설명한 내용입니다.
+    # ^ : 맨 처음부터 시작해요
+    # [a-zA-Z0-9._%+-]+ : 영어, 숫자, 점(.), 밑줄(_), 퍼센트(%), 더하기(+), 빼기(-)가 한 번 이상 나와요 (이게 이메일의 앞부분이에요)
+    # @ : 꼭 @가 들어가야 해요 (이게 이메일의 가운데에 있어요)
+    # [a-zA-Z0-9.-]+ : 영어, 숫자, 점(.), 빼기(-)가 한 번 이상 나와요 (이게 이메일의 뒷부분이에요)
+    # \. : 점(.)이 꼭 한 번 나와야 해요 (이게 이메일의 마지막 부분 앞에 있어요)
+    # [a-zA-Z]{2,} : 영어가 두 글자 이상 나와요 (이게 .com, .net 같은 부분이에요)
+    # $ : 맨 끝이에요
     pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-    # 위 규칙에 맞으면 True, 아니면 False를 돌려줘요
     return re.match(pattern, email) is not None
 
-# 이메일 주소가 맞는지 확인해볼 10개를 준비했어요
+# 테스트할 이메일 주소 10개
 emails = [
-    "test@example.com",         # 맞는 이메일
-    "user.name@domain.co.kr",   # 맞는 이메일
-    "invalid-email@",           # 틀린 이메일 (@ 뒤가 없음)
-    "another.user@domain.com",  # 맞는 이메일
-    "user@domain",              # 틀린 이메일 (마지막 점(.)과 글자가 없음)
-    "user@domain.c",            # 틀린 이메일 (마지막 글자가 1개임)
-    "user@domain.company",      # 맞는 이메일
-    "user@domain..com",         # 틀린 이메일 (점이 두 번 연속 나옴)
-    "user@.com",                # 틀린 이메일 (@ 뒤에 회사 이름이 없음)
-    "user@domain.com"           # 맞는 이메일
+    "test@example.com",         # 올바른 이메일
+    "user.name@domain.co.kr",   # 올바른 이메일
+    "user_name@domain.com",     # 올바른 이메일
+    "username@domain",          # .com 같은 끝부분이 없어서 틀림
+    "username@.com",            # @ 뒤에 글자가 없어서 틀림
+    "user@domain.c",            # 마지막 부분이 한 글자라서 틀림
+    "user@domain.company",      # 올바른 이메일
+    "user@domain..com",         # 점이 두 번 연속 나와서 틀림
+    "user@domain.com.",         # 마지막에 점이 있어서 틀림
+    "user@domain-com"           # .com 같은 점이 없어서 틀림
 ]
 
-# 이메일 주소마다 맞는지 확인해서 결과를 보여줘요
 for email in emails:
+    # 이메일이 맞으면 "유효함", 아니면 "유효하지 않음"이라고 출력해요
     result = "유효함" if is_valid_email(email) else "유효하지 않음"
     print(f"{email}: {result}")
